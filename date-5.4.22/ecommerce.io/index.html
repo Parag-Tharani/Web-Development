@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>E-commerce</title>
+    <style>
+
+        body{
+            background-color: black;
+        }
+
+        #pare{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #child1{
+            width:42%;
+            font-size: 35px;
+            font-family: cursive;
+            text-align: center;
+            background-color: rgb(81, 143, 99);
+            border-bottom-right-radius: 200px;
+        }
+
+        #pare1{
+            display: flex;
+            flex-wrap:wrap;
+           margin-left: 40%;
+        }
+
+        #child2{
+            color:white;
+            font-size: 40px;
+            text-align: right;
+            margin-top: 25px;
+            margin-right: 50px;
+        }
+
+        #child3{
+            color:white;
+            font-size: 40px;
+            text-align: left;
+            margin-top: 25px;
+        }
+
+        #child2>a,#child3>a{
+            text-decoration: none;
+            color: white;
+            font-family:'Courier New', Courier, monospace
+        }
+
+        #pare2{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width:80%;
+            margin-left: 10%;
+            margin-top: 150px;
+        }
+        
+        #pare2>div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+            font-family:'Courier New', Courier, monospace;
+            color: white;
+            width:350px;
+            height:350px;
+            margin-right: 80px;
+            margin-top: 50px;
+            border-radius: 50%;
+            box-shadow: rgb(67, 109, 79) 0px 1px 0px, rgb(67, 109, 79) 0px 8px 24px, rgb(67, 109, 79) 0px 16px 48px;
+        }
+
+        #pare2>div>a{
+            text-decoration: none;
+            color: white;
+        }
+
+        #pare2>div:hover{
+            background-color: rgb(96, 166, 120);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="pare">
+        <div id="child1"><h1>E-Kart</h1></div>
+        <div id="pare1">
+        <div id="child2"><a href="./SignUp.html">SignUp</a></div>
+        <div id="child3"><a href="./LogIn.html">LogIn</a></div>
+    </div>
+    </div>
+    <div id="pare2">
+        <div id="Mens"><a href="./mens.html">Mens</a></div>
+        <div id="Womens"><a href="./women.html">Women's</a></div>
+        <div id="Kids"><a href="./kids.html">Kid's</a></div>
+    </div>
+</body>
+</html>

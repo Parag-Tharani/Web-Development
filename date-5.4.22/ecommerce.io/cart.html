@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CartData</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #pare0{
+            display: flex;
+        }
+        #pare0>h1{
+            width: 60%;
+            color: rgb(165, 229, 69);
+            font-family: cursive;
+            font-size: 100px;
+            text-align: right;
+        }
+        #pare0>a>img{
+            margin-left: 150px;
+            width:150px;
+            height: 150px;
+            margin-top: 70px;
+        }
+        
+
+        #pare{
+            display: grid;
+            grid-template-columns: repeat(4,auto);
+            width: 80%;
+            margin:auto;
+        }
+        #pare>div{
+            margin-bottom: 40px;
+            margin-right:35px ;
+            border-radius: 10px;
+            box-shadow: rgba(108, 111, 100, 0.703) 0px 7px 29px 0px;
+        }
+        #pare>div>img{
+            width: 100%;
+        }
+        #pare>div>p:nth-child(2){
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 16px;
+            margin-left: 10px;
+            margin-right: 5px;
+        }
+        #pare>div>p:nth-child(3){
+            font-size: 18px;
+            margin-left: 10px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-top: -10px;
+        }
+        #pare>div>button{
+            margin-left: 10px;
+            margin-bottom: 4%;
+            height: 40px;
+            font-size: 20px;
+            font-family: cursive;
+            border-radius: 10px;
+            background-color:transparent;
+            box-shadow: rgba(107, 145, 120, 0.76) 0px 7px 29px 0px;
+        }
+
+        #totalAmount{
+            font-size: 33px;
+            margin-right: 15%;
+            font-family: cursive;
+            text-align: right;
+        }
+        
+        
+        label{
+            font-size: 30px;
+            margin-left: 72%;
+        }
+        input{
+            width: 170px;
+            height:40px ;
+            color: black;
+            font-size: 28px;
+            margin-left: 72%;
+            margin-bottom: 40px;
+            border-radius: 20px;
+        }
+        #button{
+            height: 45px;
+            color: black;
+            border-radius: 40px;
+        }
+
+        #checkout>button{
+            width: 200px;
+            height: 100px;
+            font-size: 30px;
+            margin-left: 72%;
+            border-radius: 20px;
+            background-color: rgba(107, 145, 120, 0.76);
+        }
+
+        @media all and (min-width:1001px) and (max-width:1701px){
+          #pare{
+            grid-template-columns: repeat(2,auto);
+          }
+        }
+        @media all and (min-width:81px) and (max-width:1000px){
+          #pare{
+            grid-template-columns: repeat(1,auto);
+          }
+        }
+
+
+        *{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="pare0">
+        <h1>Your Cart</h1>
+        <a href="index.html"><img src="https://media.istockphoto.com/vectors/home-line-icon-on-black-background-black-flat-style-vector-vector-id1161363733?k=20&m=1161363733&s=170667a&w=0&h=OKDyqR6lc5NUI-GLHn4Y_ES65irazqT7Mfn3859fhuI=">
+        </a>
+        </div><div id="pare"></div>
+        <p id="totalAmount"></p>
+        <label>Promo Code:</label><br><input id="promocode"><button id="button">Enter</button><br>
+        <a href="./payment.html" id="checkout"><button>Checkout</button></a>
+        
+</body>
+<script>
+    var cartData = JSON.parse(localStorage.getItem("cartData"))
+
+        var totalSum = cartData.reduce(function(sum,ele,index,arr){
+            return sum + Number(ele.price)
+        },0)
+        
+        document.querySelector("#totalAmount").innerText = "Cart total =  $"+totalSum
+
+        document.querySelector("#button").addEventListener('click',function(){
+            var promocode = document.querySelector("#promocode").value;
+            if(promocode === "masai30"){
+                document.querySelector("#totalAmount").innerText = "Cart total =  $"+ totalSum*0.7
+            }else{
+                document.querySelector("#totalAmount").innerText = "Cart total =  $"+totalSum;
+                alert("Wrong Promo Code")
+            }
+        })
+    cartData.forEach(function(data,index){
+      
+      var main_div = document.createElement("div")
+  
+      var img = document.createElement("img");
+      img.src = data.image_url;
+  
+      var name = document.createElement("p");
+      name.innerText = data.name;
+  
+      var price = document.createElement("p");
+      price.innerText = "$ " + data.price;
+  
+      var button = document.createElement("button");
+      button.innerText ="Remove from bag";
+  
+      button.addEventListener("click",function(){
+          cartData.splice(index,1)
+          localStorage.setItem("cartData",JSON.stringify(cartData))
+          window.location.reload()
+      })
+  
+      main_div.append(img,name,price,button);
+      document.querySelector("#pare").append(main_div)
+    })
+</script>
+</html>

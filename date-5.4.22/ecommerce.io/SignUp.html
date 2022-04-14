@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up</title>
+    <style>
+
+        body{
+            background-color: black;
+        }
+        #pare{
+            width:550px;
+            height: 800px;
+            margin:auto;
+            margin-top: 100px;
+            color: white;
+            box-shadow: rgb(67, 109, 79) 0px 7px 40px 0px;
+            border-radius: 30px;
+        }
+
+        #pare>h1{
+            font-size: 60px;
+            text-align: center;
+            padding-top: 20px;
+            margin-bottom: 100px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #form>label{
+            font-size: 35px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-left: 40px;
+        }
+
+        #form>input{
+            margin-left: 10%;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            background-color: transparent;
+            width:70%;
+            height:50px;
+            font-size: 22px;
+            border-radius: 20px;
+            background-color: white;
+        }
+        
+
+        #form>#submit{
+            margin-left: 38px;
+            width:85%;
+            height:80px;
+            font-size: 40px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border-radius: 40px;
+            margin-top: 20px;
+            background-color:rgba(125, 215, 152, 0.537) ;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="pare">
+        <h1>Sign UP</h1>
+        <form id="form">
+        <label>Full Name:</label><br>
+        <input type="text" id="name"><br>
+        <label>Email:</label><br>
+        <input type="email" id="email"><br>
+        <label>Password:</label><br>
+        <input type="password" id="password"><br><br>
+        <input type="submit" id="submit">
+    </form>
+    </div>
+</body>
+<script>
+    document.querySelector("#form").addEventListener("submit",signUp);
+
+    var UserData;
+
+    if (localStorage.getItem("UserData") === null){
+        UserData = [];
+    }else{
+        UserData = JSON.parse(localStorage.getItem("UserData"))
+    }
+    function signUp() {
+        event.preventDefault();
+
+        var Obj={
+            name:document.querySelector("#name").value,
+            email:document.querySelector("#email").value,
+            password:document.querySelector("#password").value,
+        }
+        UserData.push(Obj)
+        localStorage.setItem("UserData",JSON.stringify(UserData))
+        window.location.href = "LogIn.html"
+    }
+
+</script>
+</html>
