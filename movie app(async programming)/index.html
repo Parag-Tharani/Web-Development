@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+
+    <style>
+        #nav{
+            display: flex;
+            width: 100%;
+            height: 60px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        }
+
+        #chi1{
+            display: flex;
+            margin-left: 100px;
+            width:60%;
+            font-size: 45px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: rgb(97, 129, 127);
+        }
+        #chi2{
+            display: flex;
+            width: 350px;
+            font-size: 23px;
+            align-items: center;
+            justify-content: space-around;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #slide{
+            width: 90%;
+            height: 300px;
+            margin: auto;
+            margin-top: 30px;
+        }
+        .image{
+            width: 60%;
+            height: 100%;
+            margin-left: 250px;
+        }
+
+        #sort{
+            width: 20%;
+            margin: auto;
+            margin-top: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        #movie{
+            display: grid;
+            grid-template-columns: repeat(3,auto);
+            width: 90%;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        *{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body onload=setTime()>
+    <div id="nav">
+        <div id="chi1">IMDB</div>
+        <div id="chi2">
+            <div><a href='./index.html'>Home</a></div>
+            <div><a href="./signup.html">SignUp</a></div>
+            <div><a href="./login.html">LogIn</a></div>
+        </div>
+    </div>
+    <div id="slide">
+        <img src="https://media.sketchfab.com/models/ffb798fdd2674e6fa17d812b78708064/thumbnails/c3282f5e669c4c5b839f1e1357039883/blob.jpeg" class="image" id="image">;
+    </div>
+
+
+    <div id="sort">
+        <label>Sorting:</label>
+        <select id="sortbut">
+            <option value="none">None</option>
+            <option value="sorthl">Highest to Lowest</option>
+            <option value="sortlh">Lowest to Highest</option>
+        </select>
+    </div>
+
+    <div id="movie"></div>
+
+</body>
+<script>
+
+    //  SlideShow
+    var index = 0;
+
+    var movie_data = [
+    "https://www.gadgetsfarms.com/wp-content/uploads/2022/01/Doctor-Strange-in-the-Multiverse-of-Madness-Hindi-English-Full-Movie-720p-1080p-Dual-Audio-Download.jpg",
+    "https://thedisinsider.com/wp-content/uploads/2021/05/94E072B0-CF6C-461B-8DC5-C0CC3C5DBF88.jpeg",
+    "https://media.sketchfab.com/models/ffb798fdd2674e6fa17d812b78708064/thumbnails/c3282f5e669c4c5b839f1e1357039883/blob.jpeg",
+    ]
+    
+    function setTime(){
+        setInterval(imageShow,3000);
+    }
+
+    function imageShow(){
+
+        var imageData;
+        if(index === movie_data.length){
+            index = 0;
+            imageData = movie_data[index]
+        }else{
+            imageData = movie_data[index];
+        }
+
+        document.getElementById("image").src = imageData;
+        index++;
+    }
+
+
+
+    var dataMovie=[
+    {
+        "moviename": "X-Men: Days of Future Past",
+        "release_date": "2014",
+        "rating" : "4.8",
+        "poster": "https://m.media-amazon.com/images/M/MV5BZGIzNWYzN2YtMjcwYS00YjQ3LWI2NjMtOTNiYTUyYjE2MGNkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+    },
+    {
+        "moviename": "X-Men: First Class",
+        "release_date": "2011",
+        "rating" : "4.1",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMTg5OTMxNzk4Nl5BMl5BanBnXkFtZTcwOTk1MjAwNQ@@._V1_SX300.jpg"
+    }, 
+    {
+        "moviename": "X-Men", 
+        "release_date": "2000", 
+        "rating" : "4.2",
+        "poster": "https://m.media-amazon.com/images/M/MV5BZmIyMDk5NGYtYjQ5NS00ZWQxLTg2YzQtZDk1ZmM4ZDBlN2E3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" 
+    }, 
+    { 
+        "moviename": "X2: X-Men United", 
+        "release_date": "2003", 
+        "rating" : "4.7",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNDk0NjYxMzIzOF5BMl5BanBnXkFtZTYwMTc1MjU3._V1_SX300.jpg" 
+    }, 
+    { 
+        "moviename": "X-Men: The Last Stand", 
+        "release_date": "2006", 
+        "rating" : "4.5",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNDBhNDJiMWEtOTg4Yi00NTYzLWEzOGMtMjNmNjAxNTBlMzY3XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg" 
+    }, 
+    { 
+        "moviename": "X-Men Origins: Wolverine", 
+        "release_date": "2009",
+        "rating" : "4.2", 
+        "poster": "https://m.media-amazon.com/images/M/MV5BZWRhMzdhMzEtZTViNy00YWYyLTgxZmUtMTMwMWM0NTEyMjk3XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg" 
+    }, 
+    { 
+        "moviename": "X-Men: Apocalypse", 
+        "release_date": "2016", 
+        "rating" : "4.9",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMjU1ODM1MzYxN15BMl5BanBnXkFtZTgwOTA4NDE2ODE@._V1_SX300.jpg" 
+    }, 
+    { 
+        "moviename": "X-Men: Dark Phoenix", 
+        "release_date": "2019",
+        "rating" : "4.6", 
+        "poster": "https://m.media-amazon.com/images/M/MV5BMmZmYTgwZGItNDIxMS00MmRkLWEzODQtYTllNzM0ZWE1NmQ5XkEyXkFqcGdeQXVyODQzNTE3ODc@._V1_SX300.jpg" 
+    }, 
+    { 
+        "moviename": "X-Men: The Animated Series", 
+        "release_date": "1992-1997",
+        "rating" : "4.0", 
+        "poster": "https://m.media-amazon.com/images/M/MV5BNTVjNmEwNTMtNmQ2ZC00MGJkLWI3MDgtNzMyNTc4YjVkNTQ1L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg" 
+    }
+    ]
+    
+    localStorage.setItem('movie',JSON.stringify(dataMovie))
+    var data = JSON.parse(localStorage.getItem("movie"))
+    
+    
+
+    //sorting
+
+    document.querySelector("#sortbut").addEventListener("change",function(){
+        var sort = document.querySelector("#sortbut").value;
+        
+            if(sort === "none"){
+                 displayData(dataMovie);
+            }
+            else {
+                data.sort(function(a,b){
+                    if(sort === "sorthl"){
+                        return b.rating - a.rating;
+                    }else if(sort === "sortlh"){
+                        return a.rating - b.rating
+                    }
+                })
+                displayData(data)
+            }
+    })
+
+
+    //Movie Data
+    
+    function displayData(data){
+    document.querySelector("#movie").innerHTML = "";
+
+    data.forEach(data => {
+
+    var box = document.createElement("div");
+
+    var img = document.createElement("img")
+    img.src = data.poster;
+
+    var name = document.createElement("h2")
+    name.innerText = data.moviename
+
+    var date = document.createElement("p")
+    date.innerText = data.release_date
+
+    var rating = document.createElement("p");
+    rating.innerText = data.rating;
+
+    box.append(img,name,date,rating);
+    document.querySelector("#movie").append(box)
+    });
+}
+displayData(data);
+
+</script>
+</html>
