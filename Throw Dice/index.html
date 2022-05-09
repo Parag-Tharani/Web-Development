@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll a Dice</title>
+
+    <style>
+       
+        #pare{
+           display: flex;
+           justify-content: center;
+        }
+        #pare>button{
+            width: 200px;
+            height: 60px;
+            margin-top: 30px;
+            border-radius: 10px;
+            font-size: 25px;
+            font-family:cursive;
+            color: rgb(105, 84, 56);
+            border: 0.3px solid rgba(62, 50, 30, 0.571);
+            background-color: white;
+        }
+        #pare>button:hover{
+            cursor: pointer;
+            background-color: rgba(189, 157, 130, 0.571);
+            border: none;
+            box-shadow: rgba(189, 157, 130, 0.571) 0px 7px 29px 0px;
+        }
+
+
+        #pare2{
+            display: flex;
+            justify-content: center;
+        }
+        #pare2>div{
+            display: grid;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            margin-top: 100px;
+            margin-left: 50px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(189, 157, 130, 0.571);
+            border-radius: 10px;
+        }
+        #pare2>div>h2{
+            margin: auto;
+            font-family: cursive;
+            color: rgba(93, 77, 65, 0.822);
+        }
+        #pare2>div>p{
+            font-size: 24px;
+            margin: auto;
+            color: rgba(140, 116, 96, 0.822);
+        }
+    </style>
+</head>
+<body>
+    <div id="pare"><button onclick="rollON()">ROll ON</button></div>
+    <div id="pare2">
+        <div id="m1"><h2 id="mem1"></h2><p id="member1">Cube-1</p></div>
+        <div id="m2"><h2 id="mem2"></h2><p id="member2">Cube-2</p></div>
+        <div id="m3"><h2 id="mem3"></h2><p id="member3">Cube-3</p></div>
+    </div>
+</body>
+<script>
+
+    var dice = {
+  roll: function () {
+    var randomNumber = Math.floor(Math.random() * 6 + 1);
+    return randomNumber;
+  }
+}
+
+var styles1 = {
+    "background-color": "rgb(102, 160, 119)",
+}
+var styles2 = {
+    "background-color": "rgba(217, 209, 122, 0.781)",
+}
+var styles3 = {
+    "background-color": "rgba(219, 90, 90, 0.664)",
+}
+var styles4 = {
+    "background-color": "rgba(106, 165, 214, 0.847)",
+}
+
+function rollON(){
+    var member1 = document.getElementById("member1");
+    member1.innerText = dice.roll();
+
+    var member2 = document.getElementById("member2");
+    member2.innerText = dice.roll();
+
+    var member3 = document.getElementById("member3");
+    member3.innerText = dice.roll();
+
+
+    if(member1.innerText>member2.innerText && member1.innerText>member3.innerText && member2.innerText>member3.innerText){
+        document.getElementById("mem1").innerText = "Winner"
+        document.getElementById("mem2").innerText = ""
+        document.getElementById("mem3").innerText = ""
+        Object.assign(m1.style,styles1);
+        Object.assign(m2.style,styles2);
+        Object.assign(m3.style,styles3);
+    }else if(member1.innerText>member2.innerText && member1.innerText>member3.innerText && member2.innerText<member3.innerText){
+        document.getElementById("mem1").innerText = "Winner"
+        document.getElementById("mem2").innerText = ""
+        document.getElementById("mem3").innerText = ""
+        Object.assign(m1.style,styles1);
+        Object.assign(m2.style,styles3);
+        Object.assign(m3.style,styles2);
+    }else if(member1.innerText>member2.innerText && member1.innerText>member3.innerText && member2.innerText == member3.innerText){
+        document.getElementById("mem1").innerText = "Winner"
+        document.getElementById("mem2").innerText = ""
+        document.getElementById("mem3").innerText = ""
+        Object.assign(m1.style,styles1);
+        Object.assign(m2.style,styles4);
+        Object.assign(m3.style,styles4);
+    }else if(member1.innerText<member2.innerText && member1.innerText<member3.innerText && member2.innerText == member3.innerText){
+        document.getElementById("mem1").innerText = ""
+        document.getElementById("mem2").innerText = "Winner"
+        document.getElementById("mem3").innerText = "Winner"
+        Object.assign(m1.style,styles1);
+        Object.assign(m2.style,styles4);
+        Object.assign(m3.style,styles4);
+    }
+    else if(member2.innerText>member1.innerText && member2.innerText>member3.innerText && member1.innerText>member3.innerText){
+        document.getElementById("mem1").innerText = ""
+        document.getElementById("mem2").innerText = "Winner"
+        document.getElementById("mem3").innerText = ""
+        Object.assign(m1.style,styles2);
+        Object.assign(m2.style,styles1);
+        Object.assign(m3.style,styles3);
+    }else if(member2.innerText>member1.innerText && member2.innerText>member3.innerText && member1.innerText<member3.innerText){
+        document.getElementById("mem1").innerText = ""
+        document.getElementById("mem2").innerText = "Winner"
+        document.getElementById("mem3").innerText = ""
+        Object.assign(m1.style,styles3);
+        Object.assign(m2.style,styles1);
+        Object.assign(m3.style,styles2);
+    }else if(member2.innerText>member1.innerText && member2.innerText>member3.innerText && member1.innerText == member3.innerText){
+        document.getElementById("mem1").innerText = ""
+        document.getElementById("mem2").innerText = "Winner"
+        document.getElementById("mem3").innerText = ""
+        Object.assign(m1.style,styles4);
+        Object.assign(m2.style,styles1);
+        Object.assign(m3.style,styles4);
+    }else if(member2.innerText<member1.innerText && member2.innerText<member3.innerText && member1.innerText == member3.innerText){
+        document.getElementById("mem1").innerText = "Winner"
+        document.getElementById("mem2").innerText = ""
+        document.getElementById("mem3").innerText = "Winner"
+        Object.assign(m1.style,styles4);
+        Object.assign(m2.style,styles2);
+        Object.assign(m3.style,styles4);
+    }
+    else if(member3.innerText>member2.innerText && member3.innerText>member1.innerText && member1.innerText>member2.innerText){
+        document.getElementById("mem1").innerText = ""
+        document.getElementById("mem2").innerText = ""
+        document.getElementById("mem3").innerText = "Winner"
+        Object.assign(m1.style,styles2);
+        Object.assign(m2.style,styles3);
+        Object.assign(m3.style,styles1);
+    }else if(member3.innerText>member2.innerText && member3.innerText>member1.innerText && member1.innerText<member2.innerText){
+        document.getElementById("mem1").innerText = ""
+        document.getElementById("mem2").innerText = ""
+        document.getElementById("mem3").innerText = "Winner"
+        Object.assign(m1.style,styles3);
+        Object.assign(m2.style,styles2);
+        Object.assign(m3.style,styles1);
+    }else if(member3.innerText>member2.innerText && member3.innerText>member1.innerText && member1.innerText == member2.innerText){
+        document.getElementById("mem1").innerText = ""
+        document.getElementById("mem2").innerText = ""
+        document.getElementById("mem3").innerText = "Winner"
+        Object.assign(m1.style,styles4);
+        Object.assign(m2.style,styles4);
+        Object.assign(m3.style,styles1);
+    }else if(member3.innerText<member2.innerText && member3.innerText<member1.innerText && member1.innerText == member2.innerText){
+        document.getElementById("mem1").innerText = "Winner"
+        document.getElementById("mem2").innerText = "Winner"
+        document.getElementById("mem3").innerText = ""
+        Object.assign(m1.style,styles4);
+        Object.assign(m2.style,styles4);
+        Object.assign(m3.style,styles3);
+    }
+    else if(member1.innerText == member2.innerText == member3.innerText){
+        document.getElementById("mem1").innerText = "Winner"
+        document.getElementById("mem2").innerText = "Winner"
+        document.getElementById("mem3").innerText = "Winner"
+        Object.assign(m1.style,styles4);
+        Object.assign(m2.style,styles4);
+        Object.assign(m3.style,styles4);
+    }
+}
+</script>
+</html>
