@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMDB</title>
+    <style>
+        #container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position:fixed;
+            color: white;
+            width: 100%;
+            height: 60px;
+            margin-top: -10px;
+            margin-left: -8px;
+            background-color: rgb(23, 25, 27);
+            box-shadow: rgba(100, 100, 111, 0.062) 0px 7px 29px 0px;
+        }
+        #container>#logo{
+            color: blueviolet;
+            font-size: 30px;
+            margin-left: 105px;
+            font-family: fantasy;
+        }
+        #container>#navRight{
+            display: flex;
+            margin-right: 20px;
+        }
+        #container>#navRight>#search>#searchInput{
+            background-color: rgba(0, 0, 0, 0.486);
+            width: 210px;
+            height: 24px;
+            border: none;
+            color: white;
+            border-bottom: 1px solid blueviolet;
+            margin-top: -2px;
+            margin-right: 30px;
+        }
+        #container>#navRight>#login{
+            font-size: 18px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-right: 50px;
+        }
+        #container>#navRight>#search>#displayData{
+            width: 210px;
+            height: auto;
+            overflow-y: hidden;
+            position: absolute;
+            background-color: black;
+            border-radius: 8px;
+            max-height: 444px;
+        }
+        #container>#navRight>#search>#displayData>p{
+            padding: 15px 10px 21px 14px;
+            margin-bottom: -10px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 15.5px;
+            background-color: rgb(21, 11, 30);
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            border-radius: 34px;
+        }
+        #container>#navRight>#search>#displayData>p:hover{
+            box-shadow: rgba(130, 26, 227, 0.644) 0px 0px 0px 1px;
+        }
+
+
+
+        #container2{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%,-48%);
+            border: 1px solid black;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 15px;
+            background-color: rgb(16, 18, 21);
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        #container2>div>img{
+            width: 230px;
+            height: 300px;
+            border-radius: 6px;
+            margin-left: 178px;
+            margin-top: -1px;
+        }
+        #container2>div>h2{
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: -4px;
+        }
+        #container2>div>p{
+            padding: 10px;
+            margin-bottom: -15px;
+            margin-top: -10px;
+            color:rgb(128, 128, 128);
+        }
+        #container2>div>.plot{
+            padding: 10px;
+            font-size:18px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        #overlay{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity:0;
+            pointer-events: none;
+        }
+        #overlay.active{
+            opacity: 1;
+            pointer-events: all;
+        }
+
+
+        #slide{
+            width: 101.4%;
+            height: 580px;
+            margin: auto;
+            margin-left: -10px;
+            background-color:rgb(23, 25, 27) ;
+        }
+        #slide>#image{
+            width: 84%;
+            height: 80%;
+            margin-top: 70px;
+            margin-left: 9.5%;
+            border-radius: 10px;
+            
+        }
+
+
+        *{
+            text-decoration: none;
+            color: white;
+            
+        }
+
+    </style>
+</head>
+
+<body onload="setTime()">
+
+                                                    <!-- NavBar -->
+    <div id="container">
+        <div id="logo"><img src="">PrimeMovies</div>
+        <div id="navRight">
+        <div id="search">
+            <input type="text" id="searchInput" oninput=debounce(fetchData,500) placeholder="Type to Search...">
+            <div id="displayData"></div>
+        </div>
+        <div id="login">LogIn</div>
+    </div>
+    </div>
+
+                                                    <!-- DisplayInfo -->
+
+    <div id="container2"></div>
+    <div id="overlay"></div>
+
+                                                    <!-- Slide -->
+    <div id="slide">
+        <img src="https://media.sketchfab.com/models/ffb798fdd2674e6fa17d812b78708064/thumbnails/c3282f5e669c4c5b839f1e1357039883/blob.jpeg" id="image">
+    </div>
+</body>
+
+
+<script>
+
+                                                        // Search
+
+    var timerId;
+    function debounce(fdfn,wait){
+
+        if(timerId){
+            clearTimeout(timerId);
+        }
+        
+        timerId = setTimeout(function(){
+            fdfn();
+        },wait)
+    }
+    
+    async function fetchData(){
+        try{
+            var movieName = document.querySelector("#searchInput").value
+            let res = await fetch(`http://www.omdbapi.com/?apikey=7ec40004&s=${movieName}`)
+            let data = await res.json();
+            
+            displayData(data.Search)
+        }catch(error){
+            console.log(error)
+        }
+    }
+    
+    let box = document.querySelector("#displayData");
+    
+    function displayData(data){
+        box.innerHTML = "";
+        data.forEach(function(movie){
+
+            let p2 = document.createElement("p");
+            p2.innerText = movie.Title;
+
+            p2.onclick = function(){
+                fetchData2(p2.innerText)
+            }
+            
+            box.append(p2);
+            
+        });
+    }
+
+
+                                                        // DisaplayInfo
+    var container2 = document.querySelector("#container2");
+    var overlay = document.querySelector("#overlay")
+    
+    async function fetchData2(movieTitle){
+        try {
+            let res2 = await fetch(`http://www.omdbapi.com/?apikey=7ec40004&t=${movieTitle}`);
+            let data2 = await res2.json();
+
+            displayInfo(data2)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function displayInfo(data3){
+        box.innerHTML = "";
+        container2.innerHTML = "";
+
+        var box2 = document.createElement("div");
+
+        var img = document.createElement("img")
+        img.src = data3.Poster;
+        
+        var p1 = document.createElement("p");
+        p1.innerText = data3.Released;
+
+        var h2 = document.createElement("h2");
+        h2.innerText = data3.Title;
+
+        var p2 = document.createElement("p");
+        p2.innerText = data3.imdbRating;
+
+        var p3 = document.createElement("p")
+        if(p2.innerText>8.5){
+            p3.innerText = "Recommended"
+        }
+
+        var p4 = document.createElement("p");
+        p4.classList.add("plot")
+        p4.innerText = data3.Plot
+
+        box2.append(img,p1,h2,p2,p3,p4)
+        container2.append(box2)
+
+        if(container2.innerHTML != ""){
+        overlay.classList.add("active")
+        document.querySelector("#searchInput").value = ""
+        }
+    }
+
+    overlay.addEventListener("click",() => {
+        container2.innerHTML = "";
+        overlay.classList.remove("active")
+    })
+
+
+
+
+                                                        //  SlideShow
+
+    var index = 0;
+
+    var movie_data = [
+    "https://www.gadgetsfarms.com/wp-content/uploads/2022/01/Doctor-Strange-in-the-Multiverse-of-Madness-Hindi-English-Full-Movie-720p-1080p-Dual-Audio-Download.jpg",
+    "https://thedisinsider.com/wp-content/uploads/2021/05/94E072B0-CF6C-461B-8DC5-C0CC3C5DBF88.jpeg",
+    "https://media.sketchfab.com/models/ffb798fdd2674e6fa17d812b78708064/thumbnails/c3282f5e669c4c5b839f1e1357039883/blob.jpeg",
+    ]
+    
+    function setTime(){
+        setInterval(imageShow,3000);
+    }
+    
+
+    function imageShow(){
+
+        var imageData;
+        if(index === movie_data.length){
+            index = 0;
+            imageData = movie_data[index]
+        }else{
+            imageData = movie_data[index];
+        }
+
+        document.getElementById("image").src = imageData;
+        index++;
+    }
+
+</script>
+</html>
