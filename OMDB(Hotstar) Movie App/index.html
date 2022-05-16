@@ -87,7 +87,7 @@
             height: 300px;
             border-radius: 6px;
             margin-left: 178px;
-            margin-top: -1px;
+            margin-top: 5px;
         }
         #container2>div>h2{
             padding-left: 10px;
@@ -140,6 +140,39 @@
             
         }
 
+        #trnd{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-left: 69px;
+            font-size: 30px;
+        }
+        #trending{
+            display: grid;
+            grid-template-columns: repeat(3,auto);
+            width: 90%;
+            margin: auto;
+        }
+        #trending>div>p{
+            padding: 10px;
+            color: rgb(169, 169, 169);
+            margin-top: -10px;
+            margin-bottom: -30px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        #trending>div>h3{
+            padding: 10px;
+        }
+        #trending>div>.overview{
+            padding: 10px;
+            margin-top: 35px;
+            margin-bottom: 50px;
+            color: white;
+        }
+        
+
+
+        body{
+            background-color: rgb(23, 25, 27);
+        }
 
         *{
             text-decoration: none;
@@ -173,6 +206,12 @@
     <div id="slide">
         <img src="https://media.sketchfab.com/models/ffb798fdd2674e6fa17d812b78708064/thumbnails/c3282f5e669c4c5b839f1e1357039883/blob.jpeg" id="image">
     </div>
+
+                                                    <!-- Trending -->
+    
+    <h2 id="trnd">Trending Movies</h2>
+    <div id="trending"></div>
+
 </body>
 
 
@@ -238,23 +277,23 @@
         }
     }
 
-    function displayInfo(data3){
+    function displayInfo(data2){
         box.innerHTML = "";
         container2.innerHTML = "";
 
         var box2 = document.createElement("div");
 
         var img = document.createElement("img")
-        img.src = data3.Poster;
+        img.src = data2.Poster;
         
         var p1 = document.createElement("p");
-        p1.innerText = data3.Released;
+        p1.innerText = data2.Released;
 
         var h2 = document.createElement("h2");
-        h2.innerText = data3.Title;
+        h2.innerText = data2.Title;
 
         var p2 = document.createElement("p");
-        p2.innerText = data3.imdbRating;
+        p2.innerText = data2.imdbRating;
 
         var p3 = document.createElement("p")
         if(p2.innerText>8.5){
@@ -263,7 +302,7 @@
 
         var p4 = document.createElement("p");
         p4.classList.add("plot")
-        p4.innerText = data3.Plot
+        p4.innerText = data2.Plot
 
         box2.append(img,p1,h2,p2,p3,p4)
         container2.append(box2)
@@ -311,5 +350,61 @@
         index++;
     }
 
+
+                                                        // Trending Section 
+    
+    async function fetchData3(){
+        try {
+            let res3 = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=3b2dbf9b9d9738965b05c7e4c791f5ec`);
+            let data3 = await res3.json();
+
+            displayTrndData(data3.results)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    var container3 = document.querySelector("#trending");
+
+    function displayTrndData(data3){
+        data3.forEach(trndData => {
+
+            var box3 = document.createElement("div")
+
+            var img = document.createElement("p");
+            img.innerText = trndData.poster_path;
+
+            var img2 = document.createElement("img")
+            img = fetchImg(img.innerText);
+
+            var p1 = document.createElement("p")
+            p1.innerText = trndData.release_date
+
+            var h3 = document.createElement("h3");
+            h3.innerText = trndData.title;
+
+            var p2 = document.createElement("p")
+            p2.innerText = trndData.vote_average;
+
+            var p3 = document.createElement("p");
+            p3.classList.add("overview")
+            p3.innerText = trndData.overview;
+
+            box3.append(img2,p1,h3,p2,p3);
+            container3.append(box3)
+        });
+    }
+    fetchData3();
+
+    async function fetchImg(data){
+        try {
+        var resImg = await fetch(`https://image.tmdb.org/t/p/w500/${data}`)
+        var dataImg = await resImg.json();
+
+        return dataImg;
+        } catch (err) {
+            console.log(err)
+        }
+    }
 </script>
 </html>
