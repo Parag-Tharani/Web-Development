@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUP</title>
+    <style>
+
+        #signContainer{
+            width: 500px;
+            height: 500px;
+            margin: auto;
+            margin-top: 60px;
+            border-radius: 10px;
+            box-shadow: rgba(216, 237, 119, 0.61) 0px 7px 29px 0px;
+        }
+        #signContainer>h2{
+            font-size: 30px;
+            margin-left: 39%;
+            margin-bottom: 50px;
+            padding-top: 20px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #signContainer>form{
+            width: 35%;
+            margin: auto;
+            font-size: 18px;
+        }
+        #signContainer>form>label{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        #signContainer>form>input{
+            margin-bottom: 30px;
+        }
+        #signContainer>form>#submit{
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            margin-left: 6.5%;
+            margin-top: 20px;
+            border: none;
+            color: rgb(60, 60, 7);
+            border-radius: 40px;
+            background-color: rgb(236, 236, 171);
+            box-shadow: rgb(236, 236, 171) 0px 7px 29px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="signContainer">
+        <h2>SignUp</h2>
+    <form>
+        <label>Name:</label><br><input type="text" id="name"><br>
+        <label>Number:</label><br><input type="number" id="number"><br>
+        <label>Email:</label><br><input type="email" id="email"><br>
+        <label>Password:</label><br><input type="password" id="password"><br>
+        <input type="submit" id="submit">
+    </form>
+    </div>
+</body>
+<script>
+
+document.querySelector("#submit").addEventListener("click",signUp);
+
+var UserData;
+if (localStorage.getItem("Somato") === null){
+    UserData = [];
+}else{
+    UserData = JSON.parse(localStorage.getItem("Somato"))
+}
+
+function signUp() {
+    event.preventDefault();
+
+    var Obj={
+        name:document.querySelector("#name").value,
+        number:document.querySelector("#number").value,
+        email:document.querySelector("#email").value,
+        password:document.querySelector("#password").value,
+        loginStat:false
+    }
+    UserData.push(Obj)
+
+    localStorage.setItem("Somato",JSON.stringify(UserData))
+    window.location.href="login.html"
+}
+</script>
+</html>

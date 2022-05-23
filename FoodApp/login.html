@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        #logContainer{
+            width: 500px;
+            height: 400px;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-shadow: rgba(216, 237, 119, 0.61) 0px 7px 29px 0px;
+        }
+        #logContainer>h2{
+            font-size: 30px;
+            margin-left: 40%;
+            margin-bottom: 50px;
+            padding-top: 20px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #logContainer>form{
+            width: 35%;
+            margin: auto;
+            font-size: 18px;
+        }
+        #logContainer>form>label{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        #logContainer>form>input{
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        #logContainer>form>#submit{
+            width: 150px;
+            height: 40px;
+            font-size: 24px;
+            margin-left: 7%;
+            border: none;
+            color: rgb(60, 60, 7);
+            border-radius: 40px;
+            background-color: rgb(236, 236, 171);
+            box-shadow: rgb(236, 236, 171) 0px 7px 29px 0px;
+        }
+        #logContainer>p{
+            margin-left: 21%;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        #logContainer>p>a{
+            font-size: 21px;
+            text-decoration: none;
+            font-family:monospace;
+            color:rgb(120, 120, 12) ;
+        }
+    </style>
+</head>
+<body>
+    <div id="navBar"></div>
+    <div id="logContainer">
+    <h2>LogIn</h2>
+    <form>
+        <label>Email:</label><br><input type="email" id="email"><br>
+        <label>Password:</label><br><input type="password" id="password"><br>
+        <input type="submit" id="submit" >
+    </form>
+    <p>Didn't have an account?  <a href="./signup.html">SignUP Here!</a></p>
+</div>
+</body>
+<script type="module">
+    
+    document.querySelector("form").addEventListener("submit",loginFn);
+
+    var Boolean = false;
+    var registeredUsers = JSON.parse(localStorage.getItem("Somato"))
+    var logIn = localStorage.getItem("loggedIn")
+
+    function loginFn(){
+    event.preventDefault();
+    var enteredEmail = document.querySelector("#email").value;
+    var enteredPassword = document.querySelector("#password").value;
+
+    registeredUsers.forEach(Data => {
+        Data.loginStat = false
+        if(Data.email === enteredEmail && Data.password === enteredPassword){
+            Boolean = true;
+            Data.loginStat = true
+        }
+    });
+    if(Boolean){
+        localStorage.setItem("somatoUser",JSON.stringify(registeredUsers))
+        window.location.href="search.html"
+    }else{
+        alert("Incorrect Details")
+    }
+}
+</script>
+</html>
