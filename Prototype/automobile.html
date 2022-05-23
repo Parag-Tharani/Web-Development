@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype and Inheritence</title>
+</head>
+<body>
+    <h1>Prototype and Inheritence</h1>
+</body>
+
+<script>
+
+    var automobile = {
+        designName : "CompanyName",
+        designType : "Suv",
+        productionNumber: "23"
+    }
+
+    var project1 = Object.create(automobile)
+    
+    console.log("project1:",project1)
+</script>
+</html>

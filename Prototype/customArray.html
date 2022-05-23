@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProtoType and Inheritance</title>
+</head>
+<body>
+    <h1>Prototype & Inheritance</h1>
+</body>
+<script>
+    function myArray(){
+        Object.defineProperty(this,"length",{
+            enumerable:false,
+            writable:true
+        })
+
+        for(let i=0; i<arguments.length; i++){
+            this[i] = arguments[i];
+            this.length = arguments.length
+        }
+    }
+
+    myArray.prototype.push = function(ele){
+        let index = this.length;
+        this[index] = ele;
+        this.length++
+    }
+
+    myArray.prototype.pop = function(){
+        let index = this.length-1;
+        delete this[index];
+        this.length--;
+    }
+
+    myArray.prototype.top = function(){
+        let index = this.length-1;
+        console.log(this[index])
+    }
+
+    myArray.prototype.print = function(){
+        var arr = [];
+        for(var i=0; i<this.length; i++){
+            arr.push(this[i])
+        }
+        console.log(arr)
+    }
+
+    myArray.prototype.printReverse = function(){
+        var arr = [];
+        for(var i=this.length-1; i>=0; --i){
+            arr.push(this[i])
+        }
+        console.log(arr)
+    }
+
+    myArray.prototype.size = function(){
+        console.log("length: " + this.length)
+    }
+
+    let a2 = new myArray(1,2,3,4,5);
+    
+    console.log(a2)
+</script>
+</html>
