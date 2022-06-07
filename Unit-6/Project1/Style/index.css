@@ -1,0 +1,10 @@
+body{
+    background-color:  rgb(218, 164, 169);
+}
+
+#navBar{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+}
