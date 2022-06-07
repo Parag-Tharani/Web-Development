@@ -1,10 +1,60 @@
 body{
-    background-color:  rgb(218, 164, 169);
+    background-color:  rgb(255, 181, 181);
 }
 
 #navBar{
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 350px;
     margin: auto;
+}
+#navBar>img{
+    width: 100px;
+    border-radius: 13%;
+}
+#navBar>h1{
+    font-size: 40px;
+    color: rgb(201, 121, 121);
+    margin-right: 50px;
+}
+
+#input{
+    display: flex;
+    align-items: center;
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    padding-left: 50px;
+}
+#input>input{
+    outline: none;
+    width: 260px;
+    height: 30px;
+    font-size: 20px;
+    margin-right: 10px;
+    padding-left: 10px;
+}
+#input>button{
+    background-color: rgba(248, 142, 160, 0.676);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#output{
+    margin-top: 30px;
+}
+#output>p{
+    width: 350px;
+    margin: auto;
+    margin-bottom: 13px;
+    font-size: 24px;
+    color: rgba(201, 121, 121, 0.79);
+}
+
+*{
+    font-family: monospace;
 }
