@@ -1,0 +1,26 @@
+body{
+    background-color: rgb(238, 194, 160);
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#container>h1{
+    font-family: cursive;
+}
+#container>div{
+    display: flex;
+    align-items: center;
+}
+#container>div>button{
+    height: 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+*{
+    font-family: monospace;
+}
