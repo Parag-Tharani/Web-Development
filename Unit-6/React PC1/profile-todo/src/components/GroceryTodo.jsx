@@ -31,7 +31,9 @@ function Todo(){
             id: uuid()
         }
         
+        if(title !== ""){
         addData([...data, dataFormat])
+        }
   }
 
   const handleDelete = (id) => {

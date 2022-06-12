@@ -74,13 +74,18 @@
     border-radius: 20px;
 }
 #todo>#todoInput>button{
-    border: none;
+    border: 1.3px solid rgba(244, 186, 119, 0.792);
     width: 70px;
     height: 40px;
-    color: white;
+    color: rgb(82, 80, 80);
     margin-left: 10px;
     border-radius: 6px;
+    background-color: white;
+}
+#todo>#todoInput>button:hover{
+    box-shadow: rgba(249, 213, 175, 0.612) 0px 7px 29px 0px;
     background-color: rgba(244, 186, 119, 0.792);
+    color:white;
 }
 
 #todo>#todoList>div{
