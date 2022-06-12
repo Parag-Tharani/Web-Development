@@ -35,7 +35,9 @@ function Todo(){
   }
 
   const handleDelete = (id) => {
-      alert(id)
+      const updataData = data.filter( (items) => items.id !== id);
+
+      addData(updataData);
   }
 
 
