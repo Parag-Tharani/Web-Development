@@ -103,6 +103,29 @@
     background-color: rgba(244, 186, 119, 0.792);
 }
 
+#todo>#pageShift>button{
+    border: 1.3px solid rgba(244, 186, 119, 0.792);
+    width: 100px;
+    height: 40px;
+    color: rgb(82, 80, 80);
+    margin-left: 10px;
+    margin-top: 24px;
+    border-radius: 6px;
+    background-color: white;
+}
+#todo>#pageShift>button:hover{
+    box-shadow: rgba(249, 213, 175, 0.612) 0px 7px 29px 0px;
+    background-color: rgba(244, 186, 119, 0.717);
+    color:white;
+}
+#todo>#pageShift>button:disabled{
+    box-shadow: none;
+    color: rgb(82, 80, 80);
+    background-color: rgba(172, 139, 96, 0.26);
+}
+
+
+
 *{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
