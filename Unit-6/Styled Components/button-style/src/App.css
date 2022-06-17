@@ -1,0 +1,25 @@
+body{
+  color: white;
+  background-color: rgba(0, 0, 0, 0.902);
+}
+
+.App {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.App>div>h4{
+color: rgb(152, 48, 152);
+}
+.App>div>div>label{
+  color: white;
+}
+.App>div>div>div{
+  color: white;
+  border: 3px solid rgb(152, 48, 152);
+}
+.App>div>div>div:focus-within{
+  border: none;
+}
