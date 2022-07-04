@@ -151,15 +151,27 @@
             width: 90%;
             margin: auto;
         }
-        #trending>div>p{
-            padding: 10px;
-            color: rgb(169, 169, 169);
-            margin-top: -10px;
-            margin-bottom: -30px;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        #trending>div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgb(73, 71, 71);
+            border-radius: 10px;
+            padding-top: 30px;
+            margin-left: 1px;
+            margin-right: 1px;
         }
         #trending>div>h3{
             padding: 10px;
+            text-align: center;
+        }
+        #trending>div>p{
+            padding: 10px;
+            color: rgb(169, 169, 169);
+            margin-top: 0px;
+            margin-bottom: -30px;
+            text-align: center;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
         #trending>div>.overview{
             padding: 10px;
@@ -375,7 +387,8 @@
             img.innerText = trndData.poster_path;
 
             var img2 = document.createElement("img")
-            img = fetchImg(img.innerText);
+            img2.src = "https://www.easymovieposter.com/Design/_images/emp_vignettes/192x296_EMPT_Blank_K.jpg"
+            fetchImg(img.innerText);
 
             var p1 = document.createElement("p")
             p1.innerText = trndData.release_date
