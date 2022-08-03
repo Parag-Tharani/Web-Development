@@ -12,7 +12,7 @@ function Todo(){
 
     const fetchData = () => {
         setLoading(true);
-        fetch(`http://localhost:3001/todos?_page=${page}&_limit=${PageLimit}`)
+        fetch(`http://localhost:8080/todos?_page=${page}&_limit=${PageLimit}`)
         .then((res) => res.json())
         .then((res) => { addData(res); setLoading(false) })
         .catch(() => { setError(true); addData([]); setLoading(false)})
@@ -20,6 +20,7 @@ function Todo(){
 
     React.useEffect(() => {
         fetchData()
+        // eslint-disable-next-line
     },[page])
 
 
@@ -32,7 +33,7 @@ function Todo(){
         }
         
         if(title !== ""){
-        fetch(`http://localhost:3001/todos`,{
+        fetch(`http://localhost:8080/todos`,{
             method: "POST",
             body: JSON.stringify(dataFormat),
             headers: {
@@ -47,7 +48,7 @@ function Todo(){
 
   const handleDelete = (id) => {
 
-    fetch(`http://localhost:3001/todos/${ id }`,{
+    fetch(`http://localhost:8080/todos/${ id }`,{
         method: "DELETE",
     })
     .then((res) => res.json())
