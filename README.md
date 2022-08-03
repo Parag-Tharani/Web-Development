@@ -32,7 +32,7 @@
  - This application is a clone of movies app which uses OMDB API for fetching Data and also have search
    functionality to search movies and To know more about them.<br> 
  - <a href="https://omdb-movies-clone.netlify.app/" target="_blank"> OMDB Movie Application </a><br>
- - Demostration(because OMDB api is not allowing to search) -> <a href="https://drive.google.com/drive/folders/1_rWQ0L16spMjZIhvPg6aJN8HcerhE4E6?usp=sharing" target="_blank"> Demostration Link </a><br>
+ - Demostration(because OMDB api is not allowing to search while deploying) -> <a href="https://drive.google.com/drive/folders/1_rWQ0L16spMjZIhvPg6aJN8HcerhE4E6?usp=sharing" target="_blank"> Demostration Link </a><br>
 
 </br>
 
