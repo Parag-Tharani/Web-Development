@@ -24,7 +24,7 @@ export const TodoList = () => {
             { todos.map((items) => {
                 return (
                     <Box key={items.id} sx={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-                        {items.status?<h4 style={{color:"green"}}>{ items.title }</h4>:<h4 style={{color:"red"}}>{ items.title }</h4>}
+                        {items.status?<h4 style={{color:"rgb(100, 200, 100)"}}>{ items.title }</h4>:<h4 style={{color:"rgb(250, 95, 95)"}}>{ items.title }</h4>}
                         <Link to="#" style={{textDecoration:"none", marginLeft:"20px"}}><Button variant="outlined">Edit</Button></Link>
                     </Box>
                 )

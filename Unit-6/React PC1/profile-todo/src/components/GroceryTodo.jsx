@@ -57,7 +57,7 @@ function Todo(){
   }
 
     return loading ? (<h2> Please Wait <br />Loading ahead...</h2>)
-    : error ? (<h2> Aghh...Something Went Wrong :( </h2>)
+    : error ? (<h2> Please start Json-server at Port 8080 :( </h2>)
     : ( <>
         <h2>Grocery Todo List</h2>
         <TodoInput handleData={ handleData } />

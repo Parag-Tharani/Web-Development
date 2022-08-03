@@ -66,6 +66,7 @@ export const TodoInput = () => {
             status: checked
         }
 
+        if(addInputValue !== ""){
         fetch(`http://localhost:8080/todos`,{
             method:"POST",
             body: JSON.stringify(payload),
@@ -77,6 +78,7 @@ export const TodoInput = () => {
         .then(() => { fetchData() })
         .catch((err) => console.log(err))
     }
+  }
 
     const HandleLogout = () => {
       localStorage.setItem("logIn_token","")
